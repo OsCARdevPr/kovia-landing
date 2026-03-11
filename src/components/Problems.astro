@@ -1,0 +1,265 @@
+---
+// Problems.astro — expandable problem cards with motion animations
+const problems = [
+  {
+    number: '01',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>`,
+    title: 'Tareas repetitivas',
+    description: 'Cuellos de botella manuales consumen horas valiosas de tu equipo. Cada tarea repetida es dinero y talento desperdiciado que podría enfocarse en lo que realmente importa.',
+    stat: '+40%',
+    statLabel: 'del tiempo operativo perdido',
+    solution: 'Automatizamos flujos end-to-end para que tu equipo se enfoque en decisiones estratégicas.',
+  },
+  {
+    number: '02',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 6c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>`,
+    title: 'Pérdida de datos',
+    description: 'Información crítica dispersa en hojas de cálculo y correos. El conocimiento institucional desaparece cuando alguien renuncia y no hay sistema que lo respalde.',
+    stat: '68%',
+    statLabel: 'de empresas sin data centralizada',
+    solution: 'Centralizamos tu data en un único sistema de verdad, accesible y estructurado.',
+  },
+  {
+    number: '03',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"/></svg>`,
+    title: 'Atención lenta',
+    description: 'Leads que esperan horas por una respuesta ya eligieron a tu competencia. La velocidad de atención es la diferencia entre cerrar o perder el negocio.',
+    stat: '3h',
+    statLabel: 'tiempo promedio de respuesta',
+    solution: 'Implementamos agentes de IA que responden en segundos, 24/7, sin costo adicional.',
+  },
+];
+---
+
+<section
+  id="problemas"
+  class="relative py-28 px-6 overflow-hidden bg-[#001e3d]"
+  aria-labelledby="problems-heading"
+>
+  <!-- Background grid texture -->
+  <div class="absolute inset-0 opacity-[0.04]" aria-hidden="true">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)" />
+    </svg>
+  </div>
+
+  <!-- Gradient orbs -->
+  <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+  <div class="relative max-w-6xl mx-auto">
+
+    <!-- Header -->
+    <div id="problems-header" class="mb-20" style="opacity:0;transform:translateY(32px)">
+      <p class="text-xs font-bold text-blue-400 uppercase tracking-[0.2em] mb-4">Diagnóstico</p>
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <h2 id="problems-heading" class="text-4xl md:text-5xl font-extrabold text-white leading-tight max-w-lg">
+          ¿Tu empresa<br/>enfrenta estos<br/>
+          <span class="text-blue-400">desafíos?</span>
+        </h2>
+        <p class="max-w-xs text-white/50 text-base leading-relaxed md:text-right">
+          Toca cada tarjeta para descubrir cómo kovia convierte estos problemas en ventajas competitivas.
+        </p>
+      </div>
+      <div class="mt-10 h-px bg-white/10"></div>
+    </div>
+
+    <!-- Cards -->
+    <ul class="grid grid-cols-1 md:grid-cols-3 gap-4" role="list">
+      {problems.map((p, i) => (
+        <li
+          class="problem-card rounded-2xl overflow-hidden cursor-pointer select-none"
+          data-index={i}
+          style="opacity:0;transform:translateY(40px)"
+          role="button"
+          tabindex="0"
+          aria-expanded="false"
+          aria-label={`Ver detalle: ${p.title}`}
+        >
+          <!-- ── Static top section (always visible) ── -->
+          <div class="card-static bg-white/[0.04] border border-white/10 rounded-2xl p-8 transition-colors duration-300">
+
+            <!-- Top row: number + chevron -->
+            <div class="flex items-center justify-between mb-8">
+              <span class="text-xs font-bold text-white/20 tracking-widest">{p.number}</span>
+              <div class="card-chevron w-8 h-8 rounded-full border border-white/[0.12] flex items-center justify-center text-white/30 transition-all duration-300">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Icon -->
+            <div class="card-icon w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-400 mb-6 transition-all duration-300">
+              <Fragment set:html={p.icon} />
+            </div>
+
+            <!-- Title -->
+            <h3 class="text-2xl font-bold text-white mb-3">{p.title}</h3>
+
+            <!-- Hint text -->
+            <p class="card-hint flex items-center gap-1.5 text-white/70 text-sm font-medium">
+              <svg class="w-3.5 h-3.5 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+              Toca para ver el impacto
+            </p>
+
+            <!-- ── Expandable content ── -->
+            <div class="card-expanded" style="height:0;overflow:hidden">
+              <div class="pt-6 pb-2">
+                <!-- Divider -->
+                <div class="card-divider h-px bg-white/10 mb-6" style="opacity:0;transform:scaleX(0);transform-origin:left"></div>
+
+                <!-- Description -->
+                <p class="card-desc text-white/80 text-base leading-relaxed mb-6" style="opacity:0;transform:translateY(10px)">{p.description}</p>
+
+                <!-- Stat -->
+                <div class="card-stat flex items-end gap-3 mb-6" style="opacity:0;transform:translateY(10px)">
+                  <span class="text-4xl font-black text-blue-400 leading-none">{p.stat}</span>
+                  <span class="text-white/70 text-sm leading-snug pb-1">{p.statLabel}</span>
+                </div>
+
+                <!-- Solution pill -->
+                <div class="card-solution flex items-start gap-2.5 bg-blue-500/15 border border-blue-400/30 rounded-xl p-4" style="opacity:0;transform:translateY(10px)">
+                  <svg class="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                  </svg>
+                  <p class="text-blue-200 text-sm leading-relaxed">{p.solution}</p>
+                </div>
+
+                <!-- CTA -->
+                <a
+                  href="#contacto"
+                  class="card-cta mt-5 flex items-center gap-1.5 text-sm font-semibold text-white/60 hover:text-white transition-colors duration-200 group/link"
+                  style="opacity:0;transform:translateY(8px)"
+                  tabindex="-1"
+                >
+                  <span>Agendar diagnóstico</span>
+                  <svg class="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </li>
+      ))}
+    </ul>
+
+  </div>
+</section>
+
+<script>
+  import { animate, inView, stagger } from "motion";
+
+  // ── Scroll entrance ──────────────────────────────────────────
+  inView("#problemas", () => {
+    animate(
+      "#problems-header",
+      { opacity: [0, 1], y: [32, 0] },
+      { duration: 0.7, easing: [0.16, 1, 0.3, 1] }
+    );
+    animate(
+      ".problem-card",
+      { opacity: [0, 1], y: [40, 0] },
+      { duration: 0.65, delay: stagger(0.12, { start: 0.25 }), easing: [0.16, 1, 0.3, 1] }
+    );
+  }, { amount: 0.2 });
+
+  // ── Mobile: auto-open on scroll ────────────────────────────
+  const isMobile = () => window.innerWidth < 768;
+
+  // ── Expand / Collapse ────────────────────────────────────────
+  const EASE_OUT = [0.16, 1, 0.3, 1] as const;
+  const cards = Array.from(document.querySelectorAll<HTMLElement>(".problem-card"));
+
+  function closeCard(card: HTMLElement) {
+    const expanded = card.querySelector<HTMLElement>(".card-expanded")!;
+    const chevron  = card.querySelector<HTMLElement>(".card-chevron")!;
+    const icon     = card.querySelector<HTMLElement>(".card-icon")!;
+    const hint     = card.querySelector<HTMLElement>(".card-hint")!;
+    const inner    = card.querySelector<HTMLElement>(".card-static")!;
+    const items    = card.querySelectorAll<HTMLElement>(".card-divider,.card-desc,.card-stat,.card-solution,.card-cta");
+
+    card.setAttribute("aria-expanded", "false");
+
+    // Reset inner items instantly, then collapse height
+    items.forEach((el) => {
+      el.style.opacity = "0";
+      el.style.transform = el.classList.contains("card-divider") ? "scaleX(0)" : "translateY(10px)";
+    });
+    animate(expanded, { height: 0 }, { duration: 0.35, easing: EASE_OUT });
+
+    animate(chevron, { rotate: 0 }, { duration: 0.35, easing: EASE_OUT });
+    animate(icon, { scale: 1, backgroundColor: "rgba(255,255,255,0.05)" }, { duration: 0.3 });
+    animate(hint, { opacity: 1 }, { duration: 0.25, delay: 0.2 });
+    animate(inner, { borderColor: "rgba(255,255,255,0.1)" }, { duration: 0.3 });
+  }
+
+  function openCard(card: HTMLElement) {
+    const expanded  = card.querySelector<HTMLElement>(".card-expanded")!;
+    const chevron   = card.querySelector<HTMLElement>(".card-chevron")!;
+    const icon      = card.querySelector<HTMLElement>(".card-icon")!;
+    const hint      = card.querySelector<HTMLElement>(".card-hint")!;
+    const inner     = card.querySelector<HTMLElement>(".card-static")!;
+    const divider   = card.querySelector<HTMLElement>(".card-divider")!;
+    const desc      = card.querySelector<HTMLElement>(".card-desc")!;
+    const stat      = card.querySelector<HTMLElement>(".card-stat")!;
+    const solution  = card.querySelector<HTMLElement>(".card-solution")!;
+    const cta       = card.querySelector<HTMLElement>(".card-cta")!;
+
+    card.setAttribute("aria-expanded", "true");
+
+    // 1. Expand container height
+    animate(expanded, { height: "auto" }, { duration: 0.45, easing: EASE_OUT }).then(() => {
+
+      // 2. Divider line draws from left
+      animate(divider, { opacity: [0, 1], scaleX: [0, 1] }, { duration: 0.3, easing: EASE_OUT });
+
+      // 3. Description fades + slides up
+      animate(desc, { opacity: [0, 1], y: [10, 0] }, { duration: 0.35, delay: 0.1, easing: EASE_OUT });
+
+      // 4. Stat block
+      animate(stat, { opacity: [0, 1], y: [10, 0] }, { duration: 0.35, delay: 0.22, easing: EASE_OUT });
+
+      // 5. Solution pill
+      animate(solution, { opacity: [0, 1], y: [10, 0] }, { duration: 0.35, delay: 0.34, easing: EASE_OUT });
+
+      // 6. CTA link
+      animate(cta, { opacity: [0, 1], y: [8, 0] }, { duration: 0.3, delay: 0.46, easing: EASE_OUT });
+    });
+
+    // Simultaneous chrome animations
+    animate(chevron, { rotate: 180 }, { duration: 0.4, easing: EASE_OUT });
+    animate(icon, { scale: 1.1, backgroundColor: "rgba(59,130,246,0.2)" }, { duration: 0.35, easing: EASE_OUT });
+    animate(hint, { opacity: 0 }, { duration: 0.15 });
+    animate(inner, { borderColor: "rgba(59,130,246,0.3)" }, { duration: 0.3 });
+  }
+
+  cards.forEach((card) => {
+    const toggle = () => {
+      const isOpen = card.getAttribute("aria-expanded") === "true";
+      isOpen ? closeCard(card) : openCard(card);
+    };
+
+    card.addEventListener("click", toggle);
+    card.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+    });
+
+    // Mobile: auto-open as card scrolls into view
+    inView(card, () => {
+      if (isMobile() && card.getAttribute("aria-expanded") !== "true") {
+        // Small delay so entrance animation finishes first
+        setTimeout(() => openCard(card), 350);
+      }
+    }, { amount: 0.6 });
+  });
+</script>

@@ -1,0 +1,94 @@
+---
+import { SEO } from 'astro-seo';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'kovia | Automatización con IA para empresas en El Salvador',
+  description = 'kovia automatiza los procesos de tu empresa en El Salvador con IA: chatbots, flujos inteligentes, análisis de datos e integración ERP. Agenda tu diagnóstico gratuito.',
+  canonical = Astro.url.href,
+  ogImage = '/og-kovia.png',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/imagenes/common/kovi.ico" />
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      openGraph={{
+        basic: {
+          title: title,
+          type: 'website',
+          image: ogImage,
+          url: canonical,
+        },
+        optional: {
+          description: description,
+          locale: 'es_SV',
+          siteName: 'kovia',
+        },
+      }}
+      twitter={{
+        card: 'summary_large_image',
+        title: title,
+        description: description,
+        image: ogImage,
+      }}
+      extend={{
+        meta: [
+          { name: 'robots', content: 'index, follow' },
+          { name: 'author', content: 'kovia' },
+          { name: 'keywords', content: 'automatización IA El Salvador, chatbots empresas, inteligencia artificial El Salvador, automatización procesos, kovia, ERP integración, análisis datos' },
+          { property: 'og:locale', content: 'es_SV' },
+        ],
+        link: [
+          { rel: 'sitemap', href: '/sitemap-index.xml' },
+        ],
+      }}
+    />
+
+    <!-- JSON-LD: Organization structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "kovia",
+      "url": "https://kovia.tech",
+      "logo": "https://kovia.tech/imagenes/common/kovi.ico",
+      "description": "Soluciones de IA y automatización para empresas en El Salvador",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "San Salvador",
+        "addressCountry": "SV"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+503-7802-2630",
+        "contactType": "customer service",
+        "email": "koviatecnologies@gmail.com",
+        "availableLanguage": "Spanish"
+      }
+    })} />
+  </head>
+  <body class="font-sans bg-white text-gray-900 antialiased">
+    <slot />
+  </body>
+</html>

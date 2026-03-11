@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Página no encontrada | kovia"
+  description="La página que buscas no existe. Regresa al inicio de kovia."
+>
+  <Nav />
+  <main id="main-content" class="min-h-screen flex items-center justify-center px-6 py-32">
+    <div class="max-w-lg mx-auto text-center">
+
+      <!-- Mascot -->
+      <div class="flex justify-center mb-8">
+        <img
+          src="/imagenes/common/kovi.ico"
+          alt="kovi mascot"
+          class="w-28 h-28 object-contain opacity-80 animate-float"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+
+      <!-- 404 badge -->
+      <p class="inline-block text-xs font-bold tracking-widest uppercase text-blue-600 bg-blue-50 border border-blue-100 rounded-full px-4 py-1.5 mb-6">
+        Error 404
+      </p>
+
+      <h1 class="text-4xl sm:text-5xl font-bold text-[#001e3d] mb-4 leading-tight">
+        Esta página no existe
+      </h1>
+
+      <p class="text-gray-500 text-lg leading-relaxed mb-10">
+        Parece que la URL que ingresaste no está disponible. Puede que haya sido movida, eliminada o escrita incorrectamente.
+      </p>
+
+      <!-- Actions -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 bg-[#001e3d] text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-[#00294f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#001e3d] focus:ring-offset-2"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+          Ir al inicio
+        </a>
+        <a
+          href="/#contacto"
+          class="inline-flex items-center gap-2 border border-gray-200 text-gray-700 text-sm font-medium px-6 py-3 rounded-lg hover:border-[#001e3d] hover:text-[#001e3d] transition-colors focus:outline-none focus:ring-2 focus:ring-[#001e3d] focus:ring-offset-2"
+        >
+          Contactar a kovia
+        </a>
+      </div>
+
+      <!-- Quick links -->
+      <div class="mt-14 pt-8 border-t border-gray-100">
+        <p class="text-xs text-gray-400 uppercase tracking-wide font-medium mb-5">O ve directamente a</p>
+        <div class="flex flex-wrap justify-center gap-3">
+          {[
+            { label: "Problemas que resolvemos", href: "/#problemas" },
+            { label: "Nuestros servicios", href: "/#servicios" },
+            { label: "Agendar diagnóstico", href: "/#contacto" },
+          ].map(({ label, href }) => (
+            <a
+              href={href}
+              class="text-sm text-gray-600 hover:text-[#001e3d] hover:bg-gray-100 px-3 py-1.5 rounded-lg transition-colors"
+            >
+              {label} →
+            </a>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+</style>

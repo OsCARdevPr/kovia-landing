@@ -1,0 +1,171 @@
+---
+// Nav.astro — floating glassmorphism navbar with scroll hide/show
+---
+
+<header
+  id="floating-nav"
+  class="fixed top-4 left-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl"
+>
+  <div class="rounded-2xl bg-white/60 backdrop-blur-xl border border-white/70 shadow-xl shadow-black/[0.06] px-6">
+    <div class="h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2" aria-label="kovia - Inicio">
+        <img
+          src="/imagenes/common/kovi.ico"
+          alt="kovia mascot"
+          class="w-9 h-9 object-contain"
+          loading="eager"
+          decoding="async"
+        />
+        <span class="font-bold text-[#001e3d] text-lg tracking-tight">kovia</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Navegación principal">
+        <a href="/#problemas" class="text-sm font-medium text-gray-600 hover:text-[#001e3d] transition-colors">Problemas</a>
+        <a href="/#servicios" class="text-sm font-medium text-gray-600 hover:text-[#001e3d] transition-colors">Servicios</a>
+        <a href="/#contacto" class="text-sm font-medium text-gray-600 hover:text-[#001e3d] transition-colors">Contacto</a>
+      </nav>
+
+      <!-- CTA -->
+      <a
+        href="/#contacto"
+        class="hidden md:inline-flex items-center gap-2 bg-[#001e3d] text-white text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-[#00294f] transition-colors focus:outline-none focus:ring-2 focus:ring-[#001e3d] focus:ring-offset-2"
+      >
+        Agenda Consultoría
+      </a>
+
+      <!-- Mobile menu button — animated hamburger / X -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden p-2 text-gray-600 hover:text-[#001e3d] transition-colors"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <div class="w-5 h-[18px] flex flex-col justify-between" aria-hidden="true">
+          <span class="ham-line block h-[2px] w-5 bg-current rounded-full"></span>
+          <span class="ham-line block h-[2px] w-5 bg-current rounded-full"></span>
+          <span class="ham-line block h-[2px] w-5 bg-current rounded-full"></span>
+        </div>
+      </button>
+    </div>
+
+    <!-- Mobile menu — motion-controlled height -->
+    <div
+      id="mobile-menu"
+      class="md:hidden overflow-hidden"
+      style="height: 0;"
+      role="navigation"
+      aria-label="Menú móvil"
+    >
+      <div class="border-t border-gray-200/40 py-4 space-y-1">
+        <a href="/#problemas" class="nav-item block py-3 px-2 text-sm font-medium text-gray-700 hover:text-[#001e3d] rounded-lg hover:bg-gray-50 transition-colors opacity-0">Problemas</a>
+        <a href="/#servicios" class="nav-item block py-3 px-2 text-sm font-medium text-gray-700 hover:text-[#001e3d] rounded-lg hover:bg-gray-50 transition-colors opacity-0">Servicios</a>
+        <a href="/#contacto" class="nav-item block py-3 px-2 text-sm font-medium text-gray-700 hover:text-[#001e3d] rounded-lg hover:bg-gray-50 transition-colors opacity-0">Contacto</a>
+        <a
+          href="/#contacto"
+          class="nav-item mt-2 block text-center bg-[#001e3d] text-white text-sm font-semibold px-5 py-3 rounded-xl hover:bg-[#00294f] transition-colors opacity-0"
+        >
+          Agenda Consultoría
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  #floating-nav {
+    transform: translateX(-50%) translateY(0);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #floating-nav.nav-hidden {
+    transform: translateX(-50%) translateY(calc(-100% - 2rem));
+  }
+</style>
+
+<script>
+  import { animate, stagger } from 'motion';
+
+  const nav = document.getElementById('floating-nav');
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const lines = btn?.querySelectorAll('.ham-line');
+
+  let isMenuOpen = false;
+
+  function getItems() {
+    return menu?.querySelectorAll('.nav-item') ?? [];
+  }
+
+  function openMenu() {
+    isMenuOpen = true;
+    btn?.setAttribute('aria-expanded', 'true');
+    btn?.setAttribute('aria-label', 'Cerrar menú');
+
+    // Expand container
+    if (menu) animate(menu, { height: 'auto' }, { duration: 0.4, easing: [0.22, 1, 0.36, 1] });
+
+    // Stagger items in
+    const items = getItems();
+    if (items.length) {
+      animate(
+        items,
+        { opacity: [0, 1], y: [-10, 0] },
+        { delay: stagger(0.07, { start: 0.1 }), duration: 0.28, easing: [0.22, 1, 0.36, 1] }
+      );
+    }
+
+    // Hamburger → X
+    if (lines && lines.length >= 3) {
+      animate(lines[0], { y: 8, rotate: 45 },  { duration: 0.32, easing: [0.22, 1, 0.36, 1] });
+      animate(lines[1], { opacity: 0, scaleX: 0.2 }, { duration: 0.16 });
+      animate(lines[2], { y: -8, rotate: -45 }, { duration: 0.32, easing: [0.22, 1, 0.36, 1] });
+    }
+  }
+
+  function closeMenu() {
+    isMenuOpen = false;
+    btn?.setAttribute('aria-expanded', 'false');
+    btn?.setAttribute('aria-label', 'Abrir menú');
+
+    // Fade items out fast
+    const items = getItems();
+    if (items.length) {
+      animate(items, { opacity: 0, y: -6 }, { duration: 0.14 });
+    }
+
+    // Collapse container
+    if (menu) animate(menu, { height: 0 }, { duration: 0.32, delay: 0.05, easing: [0.32, 0, 0.67, 0] });
+
+    // X → Hamburger
+    if (lines && lines.length >= 3) {
+      animate(lines[0], { y: 0, rotate: 0 }, { duration: 0.3, easing: [0.22, 1, 0.36, 1] });
+      animate(lines[1], { opacity: 1, scaleX: 1 }, { duration: 0.25, delay: 0.06 });
+      animate(lines[2], { y: 0, rotate: 0 }, { duration: 0.3, easing: [0.22, 1, 0.36, 1] });
+    }
+  }
+
+  btn?.addEventListener('click', () => {
+    isMenuOpen ? closeMenu() : openMenu();
+  });
+
+  // Close menu on nav link click
+  getItems().forEach(item => {
+    item.addEventListener('click', () => { if (isMenuOpen) closeMenu(); });
+  });
+
+  // Scroll hide / show
+  let lastScrollY = window.scrollY;
+  const THRESHOLD = 80;
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > lastScrollY && currentScrollY > THRESHOLD) {
+      nav?.classList.add('nav-hidden');
+    } else {
+      nav?.classList.remove('nav-hidden');
+    }
+    lastScrollY = currentScrollY;
+  }, { passive: true });
+</script>
