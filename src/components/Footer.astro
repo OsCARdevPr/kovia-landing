@@ -3,21 +3,24 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-gray-900 text-gray-400 px-6 py-12" aria-label="Pie de página">
+<footer class="bg-[#07080b] text-[#aeb4c2] px-6 py-12 border-t border-[#b12b24]/45" aria-label="Pie de página">
   <div class="max-w-6xl mx-auto">
+    <div class="mb-8 neon-divider"></div>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-10">
 
       <!-- Brand -->
       <div>
         <a href="/" class="flex items-center gap-2 mb-4" aria-label="kovia">
-          <img
-            src="/imagenes/common/kovi.ico"
-            alt="kovi mascot"
-            class="w-9 h-9 object-contain"
-            loading="lazy"
-            decoding="async"
-          />
-          <span class="font-bold text-white text-base">kovia</span>
+          <span class="robotic-logo-frame">
+            <img
+              src="/imagenes/common/kovi.ico"
+              alt="kovi mascot"
+              class="w-9 h-9 object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+          </span>
+          <span class="font-bold text-[#ffd700] text-base">kovia</span>
         </a>
         <p class="text-sm leading-relaxed">
           Automatización con IA para empresas en El Salvador.
@@ -28,10 +31,10 @@ const year = new Date().getFullYear();
       <nav aria-label="Navegación secundaria">
         <p class="text-white font-semibold text-sm mb-4">Navegación</p>
         <ul class="space-y-2 text-sm">
-          <li><a href="#inicio" class="hover:text-white transition-colors">Inicio</a></li>
-          <li><a href="#problemas" class="hover:text-white transition-colors">Problemas</a></li>
-          <li><a href="#servicios" class="hover:text-white transition-colors">Servicios</a></li>
-          <li><a href="#contacto" class="hover:text-white transition-colors">Contacto</a></li>
+          <li><a href="#inicio" class="hover:text-[#ffd700] transition-colors">Inicio</a></li>
+          <li><a href="#problemas" class="hover:text-[#ffd700] transition-colors">Problemas</a></li>
+          <li><a href="#servicios" class="hover:text-[#ffd700] transition-colors">Servicios</a></li>
+          <li><a href="#contacto" class="hover:text-[#ffd700] transition-colors">Contacto</a></li>
         </ul>
       </nav>
 
@@ -39,8 +42,8 @@ const year = new Date().getFullYear();
       <div>
         <p class="text-white font-semibold text-sm mb-4">Legal</p>
         <ul class="space-y-2 text-sm mb-6">
-          <li><a href="/privacidad" class="hover:text-white transition-colors">Privacidad</a></li>
-          <li><a href="/terminos" class="hover:text-white transition-colors">Términos</a></li>
+          <li><a href="/privacidad" class="hover:text-[#ffd700] transition-colors">Privacidad</a></li>
+          <li><a href="/terminos" class="hover:text-[#ffd700] transition-colors">Términos</a></li>
         </ul>
         <!--<a
           href="https://www.linkedin.com/company/kovia"
@@ -57,11 +60,9 @@ const year = new Date().getFullYear();
       </div>
     </div>
 
-    <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+    <div class="border-t border-[#b12b24]/35 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
       <p>&copy; {year} kovia. San Salvador, El Salvador.</p>
-      <p>
-        Hecho con <span aria-label="amor" role="img">♥</span> para el ecosistema digital salvadoreño
-      </p>
+      <p>Arquitectura digital para el ecosistema empresarial salvadoreño</p>
     </div>
   </div>
 </footer>

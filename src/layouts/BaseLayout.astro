@@ -26,7 +26,7 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
@@ -88,7 +88,114 @@ const {
       }
     })} />
   </head>
-  <body class="font-sans bg-white text-gray-900 antialiased">
+  <body class="font-sans antialiased">
     <slot />
   </body>
 </html>
+
+<style is:global>
+  @font-face {
+    font-family: 'Neo Tech';
+    src: url('/fonts/Neo%20Tech%20Std%20Regular/Neo%20Tech%20Std%20Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --bg: #090a0e;
+    --surface: #12141a;
+    --surface-soft: #171a22;
+    --text-main: #f3f5f7;
+    --text-muted: #a8adbb;
+    --red-primary: #b12b24;
+    --red-dark: #760504;
+    --gold: #ffd700;
+    --line-glow: rgba(177, 43, 36, 0.72);
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--text-main);
+  }
+
+  body {
+    font-family: 'JetBrains Mono', 'Segoe UI', Tahoma, sans-serif;
+    background-image:
+      radial-gradient(circle at 18% 0%, rgba(177, 43, 36, 0.24), transparent 42%),
+      radial-gradient(circle at 82% 100%, rgba(118, 5, 4, 0.2), transparent 46%),
+      linear-gradient(180deg, #090a0e 0%, #0d0e13 62%, #08090d 100%);
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.16;
+    background-image:
+      linear-gradient(rgba(255, 215, 0, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 215, 0, 0.04) 1px, transparent 1px);
+    background-size: 90px 90px;
+    z-index: -1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Neo Tech', 'JetBrains Mono', sans-serif;
+    letter-spacing: 0.02em;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .neon-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--red-primary) 28%, var(--gold) 50%, var(--red-primary) 72%, transparent 100%);
+    box-shadow: 0 0 12px rgba(177, 43, 36, 0.9), 0 0 18px rgba(255, 215, 0, 0.35);
+  }
+
+  .neon-panel {
+    background: linear-gradient(180deg, rgba(18, 20, 26, 0.94), rgba(10, 11, 16, 0.9));
+    border: 1px solid rgba(177, 43, 36, 0.44);
+    box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.08) inset, 0 0 18px rgba(118, 5, 4, 0.4);
+  }
+
+  .neon-button {
+    background: linear-gradient(135deg, var(--red-primary), var(--red-dark));
+    border: 1px solid rgba(255, 215, 0, 0.42);
+    box-shadow: 0 0 15px rgba(177, 43, 36, 0.55);
+  }
+
+  .neon-button:hover {
+    box-shadow: 0 0 20px rgba(177, 43, 36, 0.78), 0 0 16px rgba(255, 215, 0, 0.28);
+  }
+
+  .robotic-logo-frame {
+    position: relative;
+    display: inline-flex;
+    padding: 0.28rem;
+    border-radius: 0.85rem;
+    background: linear-gradient(150deg, #d4d7df 0%, #7d8492 37%, #e6e9ef 52%, #616978 100%);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14) inset, 0 0 16px rgba(177, 43, 36, 0.45);
+  }
+
+  .robotic-logo-frame::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 0.6rem;
+    border: 1px solid rgba(9, 10, 14, 0.7);
+    pointer-events: none;
+  }
+</style>

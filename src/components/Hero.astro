@@ -29,7 +29,7 @@ const floatingCards: FloatingCard[] = [
   {
     type: 'testimonial',
     cls: 'fc-1', side: 'left:3%',   width: 'w-56',
-    initials: 'MA', color: 'bg-blue-700',
+    initials: 'MA', color: 'bg-[#760504]',
     name: 'María Alvarado', role: 'Gerente de Ops',
     text: '"Redujimos tareas manuales en un 70%. kovia entendió nuestro negocio desde el día uno."',
     stars: true,
@@ -37,7 +37,7 @@ const floatingCards: FloatingCard[] = [
   {
     type: 'testimonial',
     cls: 'fc-2', side: 'left:20%',  width: 'w-52',
-    initials: 'CR', color: 'bg-emerald-700',
+    initials: 'CR', color: 'bg-[#b12b24]',
     name: 'Carlos Rivera', role: 'Director Comercial',
     text: '"Implementamos el chatbot en 10 días. Las consultas se atienden solas."',
     stars: false,
@@ -45,7 +45,7 @@ const floatingCards: FloatingCard[] = [
   {
     type: 'testimonial',
     cls: 'fc-3', side: 'right:18%', width: 'w-56',
-    initials: 'LP', color: 'bg-purple-700',
+    initials: 'LP', color: 'bg-[#8f1410]',
     name: 'Laura Portillo', role: 'CEO · Distribuidora',
     text: '"El análisis de datos nos mostró oportunidades que no veíamos. Increíble ROI."',
     stars: true,
@@ -60,7 +60,7 @@ const floatingCards: FloatingCard[] = [
 
 <section
   id="inicio"
-  class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden bg-gradient-to-br from-[#001e3d] via-[#00294f] to-[#003366]"
+  class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden bg-gradient-to-br from-[#090a0e] via-[#141117] to-[#1a0f0f]"
   aria-labelledby="hero-heading"
 >
   <!-- Grid pattern -->
@@ -68,7 +68,7 @@ const floatingCards: FloatingCard[] = [
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/>
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#b12b24" stroke-width="1"/>
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill="url(#grid)" />
@@ -77,9 +77,9 @@ const floatingCards: FloatingCard[] = [
 
   <!-- Bottom spotlight glow -->
   <div class="absolute bottom-0 inset-x-0 pointer-events-none" aria-hidden="true">
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[380px] bg-blue-500/20 blur-[110px] rounded-full"></div>
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[420px] h-[220px] bg-cyan-400/25 blur-[70px] rounded-full"></div>
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[180px] h-[120px] bg-white/10 blur-[40px] rounded-full"></div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[380px] bg-[#b12b24]/25 blur-[110px] rounded-full"></div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[420px] h-[220px] bg-[#760504]/35 blur-[70px] rounded-full"></div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[180px] h-[120px] bg-[#ffd700]/10 blur-[40px] rounded-full"></div>
   </div>
 
   <!-- Floating icons (real images) -->
@@ -96,22 +96,22 @@ const floatingCards: FloatingCard[] = [
     {floatingCards.map(card => (
       <div class={`float-card ${card.cls} absolute bottom-0`} style={card.side}>
         {card.type === 'metric' ? (
-          <div class={`${card.width} rounded-2xl bg-white/10 border border-white/20 backdrop-blur-xl p-4 shadow-xl`}>
-            <p class="text-blue-200/60 text-[10px] uppercase tracking-wider mb-1">{card.label}</p>
+          <div class={`${card.width} rounded-2xl neon-panel backdrop-blur-xl p-4 shadow-xl`}>
+            <p class="text-[#ffd700]/80 text-[10px] uppercase tracking-wider mb-1">{card.label}</p>
             <p class="text-white text-2xl font-extrabold">{card.value}</p>
-            <p class="text-blue-100/60 text-xs">{card.sub}</p>
+            <p class="text-[#c8cedd]/70 text-xs">{card.sub}</p>
           </div>
         ) : (
-          <div class={`${card.width} rounded-2xl bg-white/10 border border-white/20 backdrop-blur-xl p-4 shadow-xl`}>
+          <div class={`${card.width} rounded-2xl neon-panel backdrop-blur-xl p-4 shadow-xl`}>
             <div class="flex items-center gap-3 mb-2">
               <div class={`w-8 h-8 rounded-full ${card.color} flex items-center justify-center text-white text-xs font-bold flex-shrink-0`}>{card.initials}</div>
               <div>
                 <p class="text-white text-xs font-semibold">{card.name}</p>
-                <p class="text-blue-200/60 text-[10px]">{card.role}</p>
+                <p class="text-[#c8cedd]/70 text-[10px]">{card.role}</p>
               </div>
             </div>
-            <p class="text-blue-100/80 text-xs leading-relaxed">{card.text}</p>
-            {card.stars && <p class="mt-2 text-yellow-400 text-xs tracking-widest">★★★★★</p>}
+            <p class="text-[#dbe1ec]/80 text-xs leading-relaxed">{card.text}</p>
+            {card.stars && <p class="mt-2 text-[#ffd700] text-xs tracking-widest">★★★★★</p>}
           </div>
         )}
       </div>
@@ -121,8 +121,8 @@ const floatingCards: FloatingCard[] = [
   <!-- Main content -->
   <div class="relative z-10 max-w-2xl mx-auto text-center py-8">
     <!-- Badge -->
-    <p class="inline-flex items-center gap-2 text-sm font-medium text-blue-200 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-8">
-      <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+    <p class="inline-flex items-center gap-2 text-sm font-medium text-[#ffd700] bg-[#1d1312] border border-[#b12b24]/60 rounded-full px-4 py-1.5 mb-8 shadow-[0_0_18px_rgba(177,43,36,0.35)]">
+      <span class="w-2 h-2 rounded-full bg-[#ffd700] animate-pulse"></span>
       Innovación en El Salvador
     </p>
 
@@ -132,10 +132,10 @@ const floatingCards: FloatingCard[] = [
       class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6"
     >
       Automatiza el futuro de<br class="hidden sm:block" />
-      <span class="text-blue-300">tu empresa en El Salvador con IA</span>
+      <span class="text-[#b12b24]">tu empresa en El Salvador con IA</span>
     </h1>
 
-    <p class="max-w-2xl mx-auto text-lg md:text-xl text-blue-100/80 mb-10 leading-relaxed">
+    <p class="max-w-2xl mx-auto text-lg md:text-xl text-[#ccd2de]/85 mb-10 leading-relaxed">
       Maximizamos tu eficiencia y reducimos costos operativos mediante
       soluciones de IA personalizadas para el mercado local salvadoreño.
     </p>
@@ -144,13 +144,13 @@ const floatingCards: FloatingCard[] = [
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
       <a
         href="#contacto"
-        class="w-full sm:w-auto bg-white text-[#001e3d] font-bold text-base px-8 py-3.5 rounded-xl hover:bg-blue-50 transition-colors shadow-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#001e3d]"
+        class="w-full sm:w-auto neon-button text-white font-bold text-base px-8 py-3.5 rounded-xl transition-colors shadow-lg focus:outline-none focus:ring-2 focus:ring-[#b12b24] focus:ring-offset-2 focus:ring-offset-[#090a0e]"
       >
         Agenda una Consultoría
       </a>
       <a
         href="#servicios"
-        class="w-full sm:w-auto border border-white/40 text-white font-semibold text-base px-8 py-3.5 rounded-xl hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#001e3d]"
+        class="w-full sm:w-auto border border-[#ffd700]/60 text-[#ffd700] font-semibold text-base px-8 py-3.5 rounded-xl hover:bg-[#ffd700]/10 transition-colors focus:outline-none focus:ring-2 focus:ring-[#ffd700] focus:ring-offset-2 focus:ring-offset-[#090a0e]"
       >
         Ver Portafolio
       </a>

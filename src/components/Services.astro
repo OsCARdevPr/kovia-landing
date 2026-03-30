@@ -30,29 +30,30 @@ const services = [
 
 <section
   id="servicios"
-  class="py-24 px-6 bg-white"
+  class="py-24 px-6 bg-[#0c0d12]"
   aria-labelledby="services-heading"
 >
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-14">
-      <p class="text-sm font-semibold text-[#001e3d] uppercase tracking-widest mb-3">Soluciones</p>
-      <h2 id="services-heading" class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+      <p class="text-sm font-semibold text-[#ffd700] uppercase tracking-widest mb-3">Soluciones</p>
+      <h2 id="services-heading" class="text-3xl md:text-4xl font-extrabold text-white mb-4">
         Nuestros Servicios Especializados
       </h2>
-      <p class="max-w-xl mx-auto text-gray-500 text-lg">
+      <p class="max-w-xl mx-auto text-[#c3c9d6] text-lg">
         Tecnología de punta diseñada específicamente para las necesidades del mercado regional.
       </p>
+      <div class="max-w-md mx-auto mt-8 neon-divider"></div>
     </div>
 
     <ul class="flex flex-wrap justify-center gap-6" role="list">
       {services.map((s) => (
-        <li class="group relative bg-gray-50 border border-gray-100 rounded-2xl p-7 hover:border-[#001e3d]/30 hover:shadow-lg transition-all duration-200 w-full sm:w-[calc(50%-12px)] lg:w-72">
-          <div class="w-14 h-14 rounded-xl bg-[#001e3d] text-white flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+        <li class="group relative neon-panel rounded-2xl p-7 hover:border-[#ffd700]/45 hover:shadow-[0_0_20px_rgba(177,43,36,0.45)] transition-all duration-200 w-full sm:w-[calc(50%-12px)] lg:w-72">
+          <div class="w-14 h-14 rounded-xl bg-[#760504] text-[#ffd700] border border-[#b12b24] flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
             <Fragment set:html={s.icon} />
           </div>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">{s.title}</h3>
-          <p class="text-gray-500 text-sm leading-relaxed mb-4">{s.description}</p>
-          <span class="inline-block text-xs font-semibold text-[#001e3d] bg-[#001e3d]/5 rounded-full px-3 py-1">
+          <h3 class="text-lg font-bold text-white mb-2">{s.title}</h3>
+          <p class="text-[#c3c9d6] text-sm leading-relaxed mb-4">{s.description}</p>
+          <span class="inline-block text-xs font-semibold text-[#ffd700] bg-[#2a1b17] border border-[#b12b24]/60 rounded-full px-3 py-1">
             {s.badge}
           </span>
         </li>
